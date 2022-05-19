@@ -926,40 +926,30 @@ open class SBUChannelViewController: SBUBaseChannelViewController {
                 var types: [MessageMenuItem] = []
                 if isCurrentUser {
                     types = SBUGlobals.ReplyTypeToUse == .none
-                        ? [.copy, .edit, .delete]
-                        : [.copy, .edit, .delete, .reply]
+                        ? [.copy]
+                        : [.copy]
                 } else {
                     types = SBUGlobals.ReplyTypeToUse == .none
                         ? [.copy]
-                        : [.copy, .reply]
+                        : [.copy]
                 }
                     
                 cell.isSelected = true
-                
-                if SBUEmojiManager.useReaction(channel: self.channel) {
-                    self.showMenuViewController(cell, message: message, types: types)
-                } else {
-                    self.showMenuModal(cell, indexPath: indexPath,  message: userMessage, types: types)
-                }
+                self.showMenuModal(cell, indexPath: indexPath,  message: userMessage, types: types)
             case let fileMessage as SBDFileMessage:
                 let isCurrentUser = fileMessage.sender?.userId == SBUGlobals.CurrentUser?.userId
                 var types: [MessageMenuItem] = []
                 if isCurrentUser {
                     types = SBUGlobals.ReplyTypeToUse == .none
-                        ? [.save, .delete]
-                        : [.save, .delete, .reply]
+                        ? [.save]
+                        : [.save]
                 } else {
                     types = SBUGlobals.ReplyTypeToUse == .none
                         ? [.save]
-                        : [.save, .reply]
+                        : [.save]
                 }
                 cell.isSelected = true
-                
-                if SBUEmojiManager.useReaction(channel: self.channel) {
-                    self.showMenuViewController(cell, message: message, types: types)
-                } else {
-                    self.showMenuModal(cell, indexPath: indexPath, message: fileMessage, types: types)
-                }
+                self.showMenuModal(cell, indexPath: indexPath, message: fileMessage, types: types)
             default:
                 break
             }
