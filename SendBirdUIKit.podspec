@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
     }
     s.resources = 'Sources/**/*.{xib,storyboard,xcassets,png,json}'
     s.public_header_files = 'Sources/*.h'
-	s.dependency "SendBirdSDK", "~>3.1.13"
+	s.dependency "SendBirdSDK", "~>3.1.23"
 	s.ios.library = "icucore"
 end
